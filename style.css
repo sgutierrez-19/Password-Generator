@@ -5,7 +5,19 @@ header {
     font-size: 50px;
 }
 
+h1 {
+    position: relative;
+    left: 33%;
+}
+
 .container {
-    
+    background-color: rgba(0, 128, 0, 0.671);
+    width: 400px;
+    position: relative;
+    left: 33%;
+    top: 50px;
+}
+
+h2 {
 }
 
