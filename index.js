@@ -12,21 +12,20 @@ var length = prompt("Choose a password length between 8 and 128 characters:")
     }
 
 var useNum = confirm("Would you like your password to contain numbers?")
-// var useSpe = confirm("Would you like your password to contain special characters (e.g. %, @, >, etc?)")
-// var useUpp = confirm("Would you like your password to contain upper case letters?")
-// var useLow = confirm("Would you like your password to contain lower case letters?") 
+var useSpe = confirm("Would you like your password to contain special characters (e.g. %, @, >, etc?)")
+var useUpp = confirm("Would you like your password to contain upper case letters?")
+var useLow = confirm("Would you like your password to contain lower case letters?") 
 
-
+// Function to pull a random piece out of an array
 function genPass (len, arr) {
-    var arrchoice = arr[0]
+    var arrChoice = arr[0]
+    var password = ['']
     for (var i = 0; i < len; i++) {
-        var random = Math.floor(Math.random() * arrchoice.length)
-        return arrchoice[random]
-    }
+        var random = Math.floor(Math.random() * arrChoice.length)
+        password = password + arrChoice[random];
+    } 
+    return password
 }
 
-console.log(genPass(8, numbers))
 
-// if (useNum == false && useSpe == false && useUpp == false && useLow == false) {
-//     alert("Your password must contain one of the preceeding items.  Please try again.")
-// }
+document.getElementById("password").innerHTML = genPass(length, numbers)
