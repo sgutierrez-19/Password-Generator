@@ -1,7 +1,9 @@
-var special = ["!#$%&'()*+,-./:;<=>?@[]^_`{|}~"]
-var numbers = ["0123456789"]
-var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
-var lowerCase = ["abcdefghijklmnopqrstuvwxyz"]
+var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split("");
+var numbers = "0123456789".split("");
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+
+var choiceArrays = [];
 
 // Asks to choose a length of the password between 8 and 128 characters
 function questions () {
@@ -13,22 +15,48 @@ function questions () {
         }
 
     var useNum = confirm("Would you like your password to contain numbers?")
-    var useSpe = confirm("Would you like your password to contain special characters (e.g. %, @, >, etc?)")
-    var useUpp = confirm("Would you like your password to contain upper case letters?")
-    var useLow = confirm("Would you like your password to contain lower case letters?") 
+        if (useNum = true) {
+            choiceArrays = choiceArrays + numbers;
+        }
 
-    document.getElementById("password").innerHTML = genPass (length, numbers)
+    var useSpe = confirm("Would you like your password to contain special characters (e.g. %, @, >, etc?)")
+    if (useSpe = true) {
+        choiceArrays = choiceArrays + special;
+    }
+
+    var useUpp = confirm("Would you like your password to contain upper case letters?")
+    if (useUpp = true) {
+        choiceArrays = choiceArrays + upperCase;
+    }
+
+    var useLow = confirm("Would you like your password to contain lower case letters?") 
+    if (useLow = true) {
+        choiceArrays = choiceArrays + lowerCase;
+    }
+
+
+    document.getElementById("password").innerHTML = genPass (length, choiceArrays)
 
     }
-// Function to pull a random piece out of an array
-function genPass (len, arr) {
-    var arrChoice = arr[0]
-    var password = ['']
-    for (var i = 0; i < len; i++) {
-        var random = Math.floor(Math.random() * arrChoice.length)
-        password = password + arrChoice[random];
-    } 
-    return password
-}
 
-// document.getElementById("generate").onclick = 
+    function genPass (len, arr) {
+        var password = ['']
+        for (var i = 0; i < len; i++) {
+            var random = Math.floor(Math.random() * arr.length)
+            password = password + arr[random];
+        } 
+        return password
+    }
+
+
+// Function to pull a random piece out of an array
+// function genPass (len, arr) {
+//     var password = ['']
+//     for (var i = 0; i < len; i++) {
+//         var random = Math.floor(Math.random() * arr.length)
+//         password = password + arr[random];
+//     } 
+//     return password
+// }
+
+// console.log(lowerCase)
