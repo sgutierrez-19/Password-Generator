@@ -57,9 +57,3 @@ function copied() {
     copiedText.select();
     document.execCommand("copy");
 }
-
-// 1) need to stop func if proper length isn't selected
-// 2) need to stop func if no options selected
-    // tried break; and return; but break makes whole function not work and return just keeps going
-// 3) choiceArrays isn't compiling properly
-// 4) Add styling, positioning, and responsiveness 
