@@ -9,34 +9,34 @@ var choiceArrays = [];
 function questions () {
     var length = prompt("Choose a password length between 8 and 128 characters:");
         if (length < 8 || length > 128) {
-            alert("You must choose a number between 8 and 128.");
+            return alert("You must choose a number between 8 and 128.");
         } else if (isNaN(length)) {
-            alert("You must choose a number.");
+            return alert("You must choose a number.");
         }
 
     var useNum = confirm("Would you like your password to contain numbers?");
-        if (useNum = true) {
+        if (useNum === true) {
             choiceArrays = choiceArrays + numbers;
         }
 
     var useSpe = confirm("Would you like your password to contain special characters (e.g. %, @, >, etc?)");
-    if (useSpe = true) {
+    if (useSpe === true) {
         choiceArrays = choiceArrays + special;
     }
 
     var useUpp = confirm("Would you like your password to contain upper case letters?");
-    if (useUpp = true) {
+    if (useUpp === true) {
         choiceArrays = choiceArrays + upperCase;
     }
 
     var useLow = confirm("Would you like your password to contain lower case letters?");
-    if (useLow = true) {
+    if (useLow === true) {
         choiceArrays = choiceArrays + lowerCase;
     } 
     
-    // else if (useNum === false && useSpe === false && useUpp === false && useLow === false) {
-    //     break;
-    // }
+    else if (useNum === false && useSpe === false && useUpp === false && useLow === false) {
+        return alert("You must select one of the options.");
+    }
 
 
     document.getElementById("password").innerHTML = genPass (length, choiceArrays);
