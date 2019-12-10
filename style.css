@@ -1,0 +1,88 @@
+header {
+    height: 75px;
+    background-color: rgb(64, 61, 233);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+h1 {
+    width:500px;
+    position: relative;
+    left: 33%;
+    top: 12px;
+    color: white;
+}
+
+body {
+    background-image: url(squared_metal.png);
+}
+.container {
+    background-color: rgb(64, 61, 233);
+    width: 400px;
+    height: auto;
+    position: absolute;
+    left: 33%;
+    top: 120px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+h2 {
+    color: white;
+    position: relative;
+    left: 95px;
+    font-size: 24px;
+    padding: 5px;
+    
+}
+
+#password {
+    position: relative;
+    left: 100px;
+    width: 200px;
+    height: auto;
+}
+
+#generate {
+    position: relative;
+    top: 18px;
+    left: -145px;
+    /* float: left; */
+}
+
+#copy {
+    position: relative;
+    top: -3px;
+    left: 213px;
+}
+
+@media only screen and (max-width: 501px) {
+
+    header {
+        font-size: 35px;
+    }
+    h1 {
+        top: 16px;
+        left: 10%;
+        width: 350px;
+    }
+
+    .container {
+        left: 10%;
+    }
+  }
+  
+@media only screen and (max-width: 880px) {
+    h1 {
+        left: 10%;
+
+    }
+
+    .container {
+        left: 10%;
+    }
+  }
+
+ 
