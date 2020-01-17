@@ -1,5 +1,11 @@
 .top-margin {
-  margin-top: 40px;
+  margin-top: 40px !important;
+}
+
+.start-padding {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  text-align: center;
 }
 
 /* header {
