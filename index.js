@@ -2,6 +2,7 @@ var special = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 var numbers = '0123456789';
 var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+var passwordLength = 0;
 
 var choiceArrays = [];
 
@@ -14,18 +15,25 @@ function length() {
   $('.action-box').html(`
     <div class="card-body">
         <p>Please choose a password length between 8 and 128 characters:</p>
-        <form class="numbers">
+        <form class="num-form">
             <div class="input-group input-group-sm mb-3">
-                <input type="text" placeholder="Enter password length" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" placeholder="Enter password length" class="num-input form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
             <button type="button" class="btn btn-primary to-num-button">
             Primary
             </button>
         </form>
     </div>`);
-  $('.to-num-button').on('click', () => {
-    alert('hello');
+  $('.num-form').on('submit', () => {
     event.preventDefault();
+    if (isNaN($('.num-input').val())) {
+      return alert('You must enter a number between 8 and 128.');
+    } else if ($('.num-input').val() > 128) {
+      return alert('Your password must be under 128 characters.');
+    } else if ($('.num-input').val() < 8) {
+      return alert('Your password must be over 8 characters.');
+    }
+    passwordLength = $('.num-input').val();
     numQuestion();
   });
 }
@@ -37,11 +45,11 @@ function numQuestion() {
         <form class="gen-nums">
             <div class="radio">
                 <label
-                ><input type="radio" name="optradio" checked /> Yes</label
+                ><input type="radio" name="optradio" value="Yes" checked /> Yes</label
                 >
             </div>
             <div class="radio">
-                <label><input type="radio" name="optradio" /> No</label>
+                <label><input type="radio" name="optradio" value="No" /> No</label>
             </div>
             <button type="button" class="btn btn-primary to-special-button">
             Primary
@@ -50,11 +58,18 @@ function numQuestion() {
     </div>`);
   $('.to-special-button').on('click', () => {
     event.preventDefault();
-    special();
+    if ($('input[name=optradio]:checked', '.gen-nums').val() === 'Yes') {
+      alert('Yes was selected');
+      choiceArrays = choiceArrays + numbers;
+      specialChar();
+    } else {
+      alert('No was selected');
+      specialChar();
+    }
   });
 }
 
-function special() {
+function specialChar() {
   $('.action-box').html(`
     <div class="card-body">
     <p>Would you like for your password to contain special characters? (e.g. %, @, >, etc)</p>
@@ -67,20 +82,79 @@ function special() {
         <div class="radio">
             <label><input type="radio" name="optradio" /> No</label>
         </div>
-        <button type="button" class="btn btn-primary to-special-button">
+        <button type="button" class="btn btn-primary to-upper-button">
         Primary
         </button>
     </form>
 </div>`);
-  $('.to-special-button').on('click', () => {
+  $('.to-upper-button').on('click', () => {
     event.preventDefault();
-    special();
+    if ($('input[name=optradio]:checked', '.gen-spec').val() === 'Yes') {
+      choiceArrays = choiceArrays + special;
+      upper();
+    } else {
+      upper();
+    }
   });
 }
 
-function upper() {}
+function upper() {
+  $('.action-box').html(`
+    <div class="card-body">
+    <p>Would you like for your password to contain upper case characters?</p>
+    <form class="gen-upper">
+        <div class="radio">
+            <label
+            ><input type="radio" name="optradio" checked /> Yes</label
+            >
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio" /> No</label>
+        </div>
+        <button type="button" class="btn btn-primary to-lower-button">
+        Primary
+        </button>
+    </form>
+</div>`);
+  $('.to-lower-button').on('click', () => {
+    event.preventDefault();
+    if ($('input[name=optradio]:checked', '.gen-upper').val() === 'Yes') {
+      choiceArrays = choiceArrays + upperCase;
+      lower();
+    } else {
+      lower();
+    }
+  });
+}
 
-function lower() {}
+function lower() {
+  $('.action-box').html(`
+    <div class="card-body">
+        <p>Would you like for your password to contain lower case characters?</p>
+        <form class="gen-lower">
+            <div class="radio">
+                <label
+                ><input type="radio" name="optradio" checked /> Yes</label
+                >
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio" /> No</label>
+            </div>
+            <button type="button" class="btn btn-primary finish-button">
+            Primary
+            </button>
+        </form>
+    </div>`);
+  $('.finish-button').on('click', () => {
+    event.preventDefault();
+    if ($('input[name=optradio]:checked', '.gen-lower').val() === 'Yes') {
+      choiceArrays = choiceArrays + lowerCase;
+      alert(genPass(passwordLength, choiceArrays));
+    } else {
+      alert(genPass(passwordLength, choiceArrays));
+    }
+  });
+}
 
 // Asks to choose a length of the password between 8 and 128 characters
 function questions() {
