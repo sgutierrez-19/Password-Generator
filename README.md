@@ -1,7 +1,5 @@
 # Password-Generator
 
-This application can generate a password from 8 to 128 charactrers consisting of any combination of the following, as selected by the user: - Upper Case Characters - Lower Case Characters - Numbers - Special Characters
-
-This application utilizes bootstrap, jquery, and dom manipulation to create a flowing product.
+Utilizing bootstrap, jquery, and dom manipulation, Password-Generator delivers a fluid password generating experience.  Users are able to select various options for their password such as a length (8-128 characters), if they want it to have numbers, upper and/or lower case characters, and special characters.  
 
 ![Password Picture](./img/newPassword.PNG)
