@@ -19,7 +19,7 @@ function length() {
             <div class="input-group input-group-sm mb-3">
                 <input type="text" placeholder="Enter password length" class="num-input form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
-            <button type="button" class="btn btn-primary to-num-button">
+            <button type="submit" class="btn btn-primary to-num-button">
             Next
             </button>
         </form>
@@ -160,12 +160,27 @@ function genPass(len, arr) {
     var random = Math.floor(Math.random() * arr.length);
     password = password + arr[random];
   }
+  $('#password-div').removeClass('collapse');
+  $('#password-div').html(`
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Your new password is:</h1>
+        <p class="lead password-box">${password}</p>
+      </div>
+    </div>
+  `);
   $('.action-box').html(`
-  <div class="card-body">
-        <h5 class="card-title">Your secure Password is below:</h5>
-        <p class="card-text password-form">${password}</p>
-        <button type="button" class="btn btn-primary start-button">
-        Restart
-        </button>
-  </div>`);
+    <h5 class="card-title start-padding">Want to create another password?</h5>
+    <button type="button" class="btn btn-primary start-button">
+      Restart
+    </button>
+  `);
+  $('.start-button').on('click', () => {
+    event.preventDefault();
+    $('#password-div').html('');
+    $('#password-div').addClass('collapse');
+    choiceArrays = '';
+    passwordLength = 0;
+    length();
+  });
 }
